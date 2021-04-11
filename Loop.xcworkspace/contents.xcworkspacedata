@@ -46,4 +46,7 @@
    <FileRef
       location = "group:TrueTime.swift/TrueTime.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:OneTimePassword/OneTimePassword.xcodeproj">
+   </FileRef>
 </Workspace>
