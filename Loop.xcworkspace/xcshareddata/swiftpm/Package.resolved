@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "appcenter-sdk-apple",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/appcenter-sdk-apple",
+      "state" : {
+        "revision" : "b2dc99cfedead0bad4e6573d86c5228c89cff332",
+        "version" : "4.4.3"
+      }
+    },
+    {
       "identity" : "base32",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mattrubin/Base32.git",
@@ -25,6 +34,24 @@
       "state" : {
         "branch" : "develop",
         "revision" : "8e4022f2852d77240d0a17482cbfe325354aac70"
+      }
+    },
+    {
+      "identity" : "plcrashreporter",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/microsoft/PLCrashReporter.git",
+      "state" : {
+        "revision" : "81cdec2b3827feb03286cb297f4c501a8eb98df1",
+        "version" : "1.10.2"
+      }
+    },
+    {
+      "identity" : "sugar_service",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gestrich/sugar_service.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b98d57e47b6768fce49449c5b18d7487791c4652"
       }
     },
     {
