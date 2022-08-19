@@ -1,6 +1,6 @@
 [submodule "Loop"]
 	path = Loop
-	url = https://github.com/LoopKit/Loop.git
+	url = https://github.com/gestrich/Loop.git
 [submodule "LoopKit"]
 	path = LoopKit
 	url = https://github.com/LoopKit/LoopKit.git
@@ -52,3 +52,6 @@
 [submodule "TidepoolKit"]
 	path = TidepoolKit
 	url = https://github.com/LoopKit/TidepoolKit.git
+[submodule "SugarMonitorService"]
+	path = SugarMonitorService
+	url = https://github.com/gestrich/SugarMonitorService.git

@@ -266,6 +266,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A99C711A233965F000AB9035"
+               BuildableName = "SugarMonitorServiceKitPlugin.loopplugin"
+               BlueprintName = "SugarMonitorServiceKitPlugin"
+               ReferencedContainer = "container:SugarMonitorService/SugarMonitorService.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "B4D40D3D23A428BC00D7ECB5"
                BuildableName = "CGMBLEKitG5Plugin.loopplugin"
                BlueprintName = "CGMBLEKitG5Plugin"
