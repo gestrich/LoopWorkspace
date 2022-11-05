@@ -75,11 +75,18 @@ EOF
     #-DVTSkipCertificateValidityCheck=YES \
     #-DVTServicesLogLevel=3 2>&1
     #'-DVTPortalRequest.Endpoint=http://172.16.59.6:8089' \ 
+
+}
+
+function appCenterUploads {
+  ../app-center-upload.sh uploadIPA $EXPORT_PATH/Loop.ipa
+  ../app-center-upload.sh uploadSymbols $ARCHIVE_PATH/dSYMs
 }
 
 function runAll(){
   archive
   exportAll
+  appCenterUploads
 }
 
 #FAILS!
