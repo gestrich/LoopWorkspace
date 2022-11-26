@@ -290,7 +290,7 @@ struct GraphItem: Identifiable, Equatable {
             if bolusEntry.amount - Float(Int(bolusEntry.amount)) >= 0.1 { //TODO: Crash risk
                 return String(format:"%.1fu", bolusEntry.amount)
             } else {
-                return String(format:"%.0fu", bolusEntry.amount)
+                return String(format:"%.2fu", bolusEntry.amount)
             }
         case .carb(let carbEntry):
             return "\(carbEntry.amount)g"
