@@ -62,7 +62,7 @@ struct OverrideView: View {
                         
                         do {
                             //TODO: Set appropriate display symbol
-                            let _ = try await looperService.remoteDataSource.startOverride(overrideName: selectedOverride.name, overrideDisplay: "A", durationInMinutes: 60)
+                            let _ = try await looperService.remoteDataSource.startOverride(overrideName: selectedOverride.name, overrideDisplay: "A", durationInMinutes: (selectedOverride.duration/60))
                             showSheetView = false
                         } catch {
                             //TODO: Show user error
