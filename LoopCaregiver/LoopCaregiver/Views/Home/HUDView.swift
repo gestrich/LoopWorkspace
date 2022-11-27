@@ -43,6 +43,17 @@ struct HUDView: View {
                     Text(lastEGVDeltaFormatted())
                         .font(.footnote)
                 }
+                //TODO: swap based on status & health (open/closed, yellow/green/red)
+                Image("Loop-Closed-Green")
+                //.renderingMode(.template) //unfortunatelly cannot use this with resizable()
+                //.foregroundColor(.yellow) //unfortunatelly cannot use this with resizable()
+                .resizable() //need to use this to get a hi-res asset to resize properly
+                .scaledToFit()
+                .frame(width: 50, height: 50) //keep the image asset size reasonable on the screen
+                .padding(.leading)
+                .onLongPressGesture(minimumDuration: 2) { //watch for 2 second long press
+                    print("TODO: trigger a data refresh")
+                }
                 Spacer()
                 if nightscoutDateSource.updating {
                     ProgressView()
@@ -52,6 +63,7 @@ struct HUDView: View {
                         Text(looper.name).tag(looper)
                     }
                 }
+                .frame(width: 100.0) //Bit of a hack here for preserving space for Looper's name
             }
 
         }

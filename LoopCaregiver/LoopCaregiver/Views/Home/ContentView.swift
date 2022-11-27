@@ -62,6 +62,17 @@ struct HomeView: View {
             HUDView(looperService: looperService, settings: looperService.settings)
             PredicatedGlucoseContainerView(remoteDataSource: remoteDataSource, settings: looperService.settings)
             HStack {
+                Text("Active Basal")
+                    .bold()
+                    .font(.subheadline)
+                Spacer()
+                Text("u/h ")
+                    .foregroundColor(.gray)
+                    .bold()
+                    .font(.subheadline)
+            }
+            .padding([.leading, .bottom])
+            HStack {
                 Text("Active Insulin")
                     .bold()
                     .font(.subheadline)
@@ -83,13 +94,6 @@ struct HomeView: View {
                     .font(.subheadline)
             }
             .padding([.leading, .bottom])
-            HStack {
-                Text("Nightscout")
-                    .bold()
-                    .font(.subheadline)
-                Spacer()
-            }
-            .padding(.leading)
             TreatmentGraphScrollView(remoteDataSource: remoteDataSource, settings: looperService.settings)
             Spacer()
             BottomBarView(showCarbView: $showCarbView, showBolusView: $showBolusView, showOverrideView: $showOverrideView, showSettingsView: $showSettingsView)
@@ -113,14 +117,14 @@ struct HomeView: View {
         guard let cob = remoteDataSource.currentCOB?.cob else {
             return ""
         }
-        return String(format: "%.0f g", cob)
+        return String(format: "%.1f g ", cob)
     }
     
     func formattedIOB() -> String {
         guard let iob = remoteDataSource.currentIOB?.iob else {
             return ""
         }
-        return String(format: "%.1f U Total", iob)
+        return String(format: "%.2f U Total ", iob)
     }
     
 }

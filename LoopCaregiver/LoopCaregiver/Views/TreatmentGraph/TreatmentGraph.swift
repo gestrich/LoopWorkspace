@@ -287,11 +287,7 @@ struct GraphItem: Identifiable, Equatable {
     func formattedValue() -> String {
         switch self.type {
         case .bolus(let bolusEntry):
-            if bolusEntry.amount - Float(Int(bolusEntry.amount)) >= 0.1 { //TODO: Crash risk
-                return String(format:"%.1fu", bolusEntry.amount)
-            } else {
-                return String(format:"%.2fu", bolusEntry.amount)
-            }
+            return String(format: "%g", bolusEntry.amount)
         case .carb(let carbEntry):
             return "\(carbEntry.amount)g"
         case .egv:

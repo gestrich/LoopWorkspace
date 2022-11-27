@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "loop-fresh@42mm.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

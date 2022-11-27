@@ -33,7 +33,7 @@ struct PredicatedGlucoseContainerView: View {
                     .font(.subheadline)
                 Spacer()
                 if let eventualGlucose = remoteDataSource.predictedGlucose.last {
-                    Text("Eventually \(eventualGlucose.presentableStringValueWithUnits(displayUnits: settings.glucoseDisplayUnits))")
+                    Text("Eventually \(eventualGlucose.presentableStringValueWithUnits(displayUnits: settings.glucoseDisplayUnits)) ")
                         .bold()
                         .font(.subheadline)
                         .foregroundColor(.gray)
