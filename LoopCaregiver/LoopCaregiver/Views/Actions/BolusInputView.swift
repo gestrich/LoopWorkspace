@@ -20,7 +20,7 @@ struct BolusInputView: View {
     @State private var errorText: String? = nil
     @FocusState private var bolusInputViewIsFocused: Bool
     
-    private let maxBolusAmount = 10.0 //TODO: Check Looper's max bolus amount
+    private let maxBolusAmount = 5.0 //TODO: Check Looper's max bolus amount
     private let unitFrameWidth: CGFloat = 20.0
     
     var body: some View {
