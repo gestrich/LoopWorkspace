@@ -14,7 +14,7 @@ struct CarbInputView: View {
     @Binding var showSheetView: Bool
     
     @State private var carbInput: String = ""
-    @State private var duration: String = "3" //TODO: Get Looper's default medium duration
+    @State private var duration: String = "0.5" //TODO: Get Looper's default medium duration
     @State private var submissionInProgress = false
     @State private var isPresentingConfirm: Bool = false
     @State private var pickerConsumedDate: Date = Date()
@@ -22,10 +22,11 @@ struct CarbInputView: View {
     @State private var errorText: String? = nil
     @FocusState private var carbInputViewIsFocused: Bool
     
+    private let maxCarbEntryAmountInGrams = 75.0 //TODO: Check Looper's max carb amount
     private let minAbsorptionTimeInHours = 0.5
     private let maxAbsorptionTimeInHours = 8.0
-    private let maxPastCarbEntryHours = 12
-    private let maxFutureCarbEntryHours = 1
+    private let maxPastCarbEntryHours = 10
+    private let maxFutureCarbEntryHours = 10
     private let unitFrameWidth: CGFloat = 20.0
     
     var body: some View {
@@ -159,7 +160,7 @@ struct CarbInputView: View {
     
     private func getCarbFieldValues() throws -> CarbInputViewFormValues {
         
-        guard let carbAmountInGrams = Double(carbInput), carbAmountInGrams > 0, carbAmountInGrams <= 250 else { //TODO: Check Looper's max carb amount
+        guard let carbAmountInGrams = Double(carbInput), carbAmountInGrams > 0, carbAmountInGrams <= maxCarbEntryAmountInGrams else {
             throw CarbInputViewError.invalidCarbAmount
         }
         
