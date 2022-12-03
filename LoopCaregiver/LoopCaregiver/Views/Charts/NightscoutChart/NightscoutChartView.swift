@@ -144,7 +144,7 @@ struct NightscoutChartView: View {
     }
     
     func maxYValue() -> Double {
-        return HKQuantity(unit: .milligramsPerDeciliter, doubleValue: 400).doubleValue(for: settings.glucoseDisplayUnits)
+        return HKQuantity(unit: .milligramsPerDeciliter, doubleValue: 300).doubleValue(for: settings.glucoseDisplayUnits)
     }
     
     func formatGlucoseQuantity(_ quantity: HKQuantity) -> Double {
