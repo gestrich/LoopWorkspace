@@ -37,13 +37,6 @@ struct NightscoutChartScrollView: View {
                         .padding([.top, .bottom]) //Prevent top Y label from clipping
                         .id(configuration.graphTag)
                         .modifier(PinchToZoom(minScale: minScale, maxScale: maxScale, scale: $currentScale))
-                        .onChange(of: currentScale) { newValue in
-                            scrollReaderProxy.scrollTo(configuration.graphTag, anchor: .trailing)
-                        }
-                        //TODO clean up scrolling to land at a nice place so you see mostly real BGs and ~1h of predicted BGs
-                        .onChange(of: remoteDataSource.glucoseSamples, perform: { newValue in
-                            scrollReaderProxy.scrollTo(configuration.graphTag, anchor: .trailing)
-                        })
                         //TODO clean up scrolling to land at a nice place so you see mostly real BGs and ~1h of predicted BGs
                         .onAppear(perform: {
                             scrollReaderProxy.scrollTo(configuration.graphTag, anchor: .trailing)
