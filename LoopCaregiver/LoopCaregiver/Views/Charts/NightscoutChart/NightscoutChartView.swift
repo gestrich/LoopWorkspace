@@ -481,6 +481,6 @@ func interpolateYValueInRange(yRange: (y1: Double, y2: Double), referenceXRange:
 
 struct NightscoutChartConfiguration {
     let graphTotalDays = 1
-    let daysPerVisbleScrollFrame = 0.3
+    let daysPerVisbleScrollFrame = 3.0 / 24.0 //zoom to 3 hours
     let graphTag = 1000
 }
