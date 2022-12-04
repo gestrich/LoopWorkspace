@@ -61,7 +61,6 @@ struct OverrideView: View {
                         }
                         
                         do {
-                            //TODO: Set appropriate display symbol
                             //Auggie - respect the override's duration (in minutes) as defined on Looping phone
                             let _ = try await looperService.remoteDataSource.startOverride(overrideName: selectedOverride.name, overrideDisplay: "A", durationInMinutes: selectedOverride.durationInMinutes)
                             showSheetView = false

@@ -18,7 +18,6 @@ struct CarbInputView: View {
     @State private var duration: String = "3" //TODO: Get Looper's default medium duration
     @State private var submissionInProgress = false
     @State private var isPresentingConfirm: Bool = false
-    @State private var usePickerConsumedDate: Bool = false
     @State private var pickerConsumedDate: Date = Date()
     @State private var showDatePickerSheet: Bool = false
     @State private var showFoodEmojis: Bool = true
@@ -27,10 +26,11 @@ struct CarbInputView: View {
     @FocusState private var carbInputViewIsFocused: Bool
     @FocusState private var durationInputFieldIsFocused: Bool
     
+    private let maxCarbEntryAmountInGrams = 75.0 //TODO: Check Looper's max carb amount
     private let minAbsorptionTimeInHours = 0.5
     private let maxAbsorptionTimeInHours = 8.0
-    private let maxPastCarbEntryHours = 12
-    private let maxFutureCarbEntryHours = 1
+    private let maxPastCarbEntryHours = 10
+    private let maxFutureCarbEntryHours = 10
     private let unitFrameWidth: CGFloat = 20.0
     
     var body: some View {
@@ -79,9 +79,6 @@ struct CarbInputView: View {
                     }
                 }.presentationDetents([.fraction(1/4)])
             }
-            .onChange(of: pickerConsumedDate) { newValue in
-                usePickerConsumedDate = true
-            }
         }
     }
     
@@ -108,11 +105,7 @@ struct CarbInputView: View {
                 Button {
                     showDatePickerSheet = true
                 } label: {
-                    if usePickerConsumedDate {
-                        Text(dateFormatter.string(from: pickerConsumedDate))
-                    } else {
-                        Text("Now")
-                    }
+                    Text(dateFormatter.string(from: pickerConsumedDate))
                 }
             } label: {
                 Text("Time")
@@ -236,7 +229,7 @@ struct CarbInputView: View {
     
     private func getCarbFieldValues() throws -> CarbInputViewFormValues {
         
-        guard let carbAmountInGrams = Double(carbInput), carbAmountInGrams > 0, carbAmountInGrams <= 250 else { //TODO: Check Looper's max carb amount
+        guard let carbAmountInGrams = Double(carbInput), carbAmountInGrams > 0, carbAmountInGrams <= maxCarbEntryAmountInGrams else {
             throw CarbInputViewError.invalidCarbAmount
         }
         
@@ -245,7 +238,7 @@ struct CarbInputView: View {
         }
         
         let now = Date()
-        let consumedDate = self.usePickerConsumedDate ? pickerConsumedDate : now
+        let consumedDate = pickerConsumedDate
         
         let oldestAcceptedDate = now.addingTimeInterval(-60 * 60 * Double(maxPastCarbEntryHours))
         let latestAcceptedDate = now.addingTimeInterval(60 * 60 * Double(maxFutureCarbEntryHours))

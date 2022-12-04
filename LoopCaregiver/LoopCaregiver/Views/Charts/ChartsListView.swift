@@ -69,8 +69,8 @@ struct ChartsListView: View {
     }
     
     var loopGraphInterval: DateInterval {
-        let hoursLookback = 1.0
-        let hoursLookahead = 5.0
+        let hoursLookback = 2.0
+        let hoursLookahead = 4.0
         return DateInterval(start: Date().addingTimeInterval(60.0 * 60.0 * -hoursLookback), duration: 60.0 * 60.0 * hoursLookahead)
     }
     
@@ -87,7 +87,7 @@ struct ChartsListView: View {
         guard let cob = remoteDataSource.currentCOB?.cob else {
             return ""
         }
-        return String(format: "%.0f g", cob)
+        return String(format: "%.1f g", cob)
     }
     
     func formattedIOB() -> String {

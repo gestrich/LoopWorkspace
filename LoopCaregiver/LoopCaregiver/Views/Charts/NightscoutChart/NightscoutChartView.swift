@@ -37,13 +37,6 @@ struct NightscoutChartScrollView: View {
                         .padding([.top, .bottom]) //Prevent top Y label from clipping
                         .id(configuration.graphTag)
                         .modifier(PinchToZoom(minScale: minScale, maxScale: maxScale, scale: $currentScale))
-                        .onChange(of: currentScale) { newValue in
-                            scrollReaderProxy.scrollTo(configuration.graphTag, anchor: .trailing)
-                        }
-                        //TODO clean up scrolling to land at a nice place so you see mostly real BGs and ~1h of predicted BGs
-                        .onChange(of: remoteDataSource.glucoseSamples, perform: { newValue in
-                            scrollReaderProxy.scrollTo(configuration.graphTag, anchor: .trailing)
-                        })
                         //TODO clean up scrolling to land at a nice place so you see mostly real BGs and ~1h of predicted BGs
                         .onAppear(perform: {
                             scrollReaderProxy.scrollTo(configuration.graphTag, anchor: .trailing)
@@ -151,7 +144,7 @@ struct NightscoutChartView: View {
     }
     
     func maxYValue() -> Double {
-        return HKQuantity(unit: .milligramsPerDeciliter, doubleValue: 400).doubleValue(for: settings.glucoseDisplayUnits)
+        return HKQuantity(unit: .milligramsPerDeciliter, doubleValue: 300).doubleValue(for: settings.glucoseDisplayUnits)
     }
     
     func formatGlucoseQuantity(_ quantity: HKQuantity) -> Double {
@@ -488,6 +481,6 @@ func interpolateYValueInRange(yRange: (y1: Double, y2: Double), referenceXRange:
 
 struct NightscoutChartConfiguration {
     let graphTotalDays = 1
-    let daysPerVisbleScrollFrame = 0.3
+    let daysPerVisbleScrollFrame = 3.0 / 24.0 //zoom to 3 hours
     let graphTag = 1000
 }
