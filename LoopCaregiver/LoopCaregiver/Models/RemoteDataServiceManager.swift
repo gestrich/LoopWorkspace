@@ -75,7 +75,8 @@ class RemoteDataServiceManager: ObservableObject, RemoteDataServiceProvider {
             async let bolusEntriesAsync = remoteDataProvider.fetchBolusEntries()
             async let basalEntriesAsync = remoteDataProvider.fetchBasalEntries()
             async let deviceStatusAsync = remoteDataProvider.fetchLatestDeviceStatus()
-
+            async let recentCommandsAsync = remoteDataProvider.fetchRecentCommands()
+            
             let carbEntries = try await carbEntriesAsync
             if carbEntries != self.carbEntries {
                 self.carbEntries = carbEntries
@@ -111,6 +112,11 @@ class RemoteDataServiceManager: ObservableObject, RemoteDataServiceProvider {
                 if predictedGlucoseSamples != self.predictedGlucose {
                     self.predictedGlucose = predictedGlucoseSamples
                 }
+            }
+            
+            let recentCommands = try await recentCommandsAsync
+            if recentCommands != self.recentCommands {
+                self.recentCommands = recentCommands
             }
             
         } catch {
