@@ -23,6 +23,7 @@ class RemoteDataServiceManager: ObservableObject, RemoteDataServiceProvider {
     @Published var currentIOB: IOBStatus? = nil
     @Published var currentCOB: COBStatus? = nil
     @Published var currentProfile: ProfileSet?
+    @Published var recentCommands: [NSRemoteCommandPayload] = []
     @Published var updating: Bool = false
     
     private let remoteDataProvider: RemoteDataServiceProvider
@@ -243,8 +244,23 @@ class RemoteDataServiceManager: ObservableObject, RemoteDataServiceProvider {
         return try await remoteDataProvider.cancelOverride()
     }
     
+    func activateAutobolus(activate: Bool) async throws {
+        try await remoteDataProvider.activateAutobolus(activate: activate)
+    }
+    func activateClosedLoop(activate: Bool) async throws {
+        try await remoteDataProvider.activateClosedLoop(activate: activate)
+    }
+    
     func fetchCurrentProfile() async throws -> ProfileSet {
         return try await remoteDataProvider.fetchCurrentProfile()
+    }
+    
+    func fetchRecentCommands() async throws -> [NSRemoteCommandPayload] {
+        return try await remoteDataProvider.fetchRecentCommands()
+    }
+    
+    func deleteAllCommands() async throws {
+        try await remoteDataProvider.deleteAllCommands()
     }
 }
 
@@ -259,5 +275,9 @@ protocol RemoteDataServiceProvider {
     func deliverBolus(amountInUnits: Double) async throws
     func startOverride(overrideName: String, durationTime: TimeInterval) async throws
     func cancelOverride() async throws
+    func activateAutobolus(activate: Bool) async throws
+    func activateClosedLoop(activate: Bool) async throws
     func fetchCurrentProfile() async throws -> ProfileSet
+    func fetchRecentCommands() async throws -> [NSRemoteCommandPayload]
+    func deleteAllCommands() async throws
 }
