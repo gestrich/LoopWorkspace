@@ -80,4 +80,7 @@
    <FileRef
       location = "group:LoopOnboarding/LoopOnboarding.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:SugarMonitorService/SugarMonitorService.xcodeproj">
+   </FileRef>
 </Workspace>
