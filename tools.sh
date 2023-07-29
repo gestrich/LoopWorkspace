@@ -6,8 +6,6 @@ set -u
 #STEPS
 #See https://www.bluelabellabs.com/blog/generate-apple-certificates-provisioning-profiles/
 
-TEAM_ID="5K844XFC6W"
-LOOP_BUNDLE_ID="com.$TEAM_ID.loopkit.Loop"
 PROVISIONING_PROFILE_NAME="Apple Development" #How does this work when you have multiple extensions that use different provisioning profiles?
 CODE_SIGNING_IDENTITY="Apple Development"
 #CODE_SIGNING_STYLE="Manual" #I suspect this may break it since the PROVISIONING_PROFILE_NAME seems wrong and I'd also need to specify more?
@@ -22,27 +20,12 @@ EXPORT_OPTIONS_PATH="$RESULT_PATH/exportOptions.plist"
 EXPORT_METHOD="ad-hoc"
 UPLOAD_SYMBOLS=false
 
-confirmStep() {
-    message="$1"
-    # call with a prompt string or use a default
-    read -r -p "$message [y]: " response
-    case "$response" in
-        [yY][eE][sS]|[yY])
-            true
-            ;;
-        *)
-            false
-            ;;
-    esac
-}
 function archive(){
-
-  confirmStep "Did you uncomment this in ~/.gitconfig [includeIf gitdir:~/]"
   rm -rf "$RESULT_PATH" 
   mkdir "$RESULT_PATH"
   xcodebuild archive \
-    -workspace LoopWorkspace.xcworkspace \
-    -scheme 'LoopWorkspace' \
+    -workspace ${WORKSPACE_NAME}.xcworkspace \
+    -scheme ${SCHEME_NAME} \
     -destination generic/platform=iOS \
     -archivePath $ARCHIVE_PATH \
     -derivedDataPath $DERIVED_DATA_PATH \
@@ -75,7 +58,7 @@ cat > ~/Downloads/exportOptions.plist <<EOF
         <${UPLOAD_SYMBOLS}/>
         <key>provisioningProfiles</key>
         <dict>
-          <key>${LOOP_BUNDLE_ID}</key>
+          <key>${BUNDLE_ID}</key>
           <string>${PROVISIONING_PROFILE_NAME}</string>
         </dict>
 </dict>
