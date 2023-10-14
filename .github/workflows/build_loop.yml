@@ -166,6 +166,14 @@ jobs:
           (vars.SCHEDULED_SYNC != 'false' && needs.check_latest_from_upstream.outputs.NEW_COMMITS == 'true' )
         )
     steps:
+      - uses: actions/checkout@v3
+      - name: Write to Netrc
+        id: netrc
+        env:
+          TOKEN_TO_CHECK: ${{ secrets.GH_PAT }}
+        run: |
+          ./appendNetrc.sh ~/.netrc github.com user "${TOKEN_TO_CHECK}"
+          ./appendNetrc.sh ~/.netrc api.github.com user "${TOKEN_TO_CHECK}"
       - name: Select Xcode version
         run: "sudo xcode-select --switch /Applications/Xcode_15.0.app/Contents/Developer"
       

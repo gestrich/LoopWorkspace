@@ -58,3 +58,6 @@
 [submodule "LibreTransmitter"]
 	path = LibreTransmitter
 	url = https://github.com/LoopKit/LibreTransmitter.git
+[submodule "SugarMonitorService"]
+	path = SugarMonitorService
+	url = https://github.com/gestrich/SugarMonitorService.git
