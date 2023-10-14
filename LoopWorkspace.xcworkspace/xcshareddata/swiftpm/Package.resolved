@@ -57,10 +57,10 @@
     {
       "identity" : "nightscoutkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/LoopKit/NightscoutKit",
+      "location" : "https://github.com/gestrich/NightscoutKit.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "ca8e2cea82ab465282cd180ce01d64c1cf25478d"
+        "branch" : "feature/2023-10/bg/remote-commands",
+        "revision" : "4fd1d92ce4abb256378d71d23eafde7082a21dcd"
       }
     },
     {
